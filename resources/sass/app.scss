@@ -1,0 +1,144 @@
+// Импорт шрифтов
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Montserrat:wght@600&display=swap');
+
+// Переменные
+$primary: #2C3E50; // Тёмно-синий
+$secondary: #F39C12; // Оранжевый
+$light: #ECF0F1; // Светлый фон
+$white: #FFFFFF;
+
+// Bootstrap
+@import '~bootstrap/scss/bootstrap';
+
+// Кастомные стили
+body {
+    font-family: 'Roboto', sans-serif;
+    background-color: $white;
+    margin-bottom: 100px; // Отступ для футера
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: 'Montserrat', sans-serif;
+}
+
+.navbar {
+    background-color: $primary !important;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+
+    .navbar-brand, .nav-link {
+        color: $light !important;
+        transition: color 0.3s;
+    }
+
+    .nav-link:hover {
+        color: $secondary !important;
+    }
+
+    .nav-item.active .nav-link {
+        color: $secondary !important;
+        font-weight: bold;
+    }
+
+    .btn-link {
+        color: $light;
+        &:hover {
+            color: $secondary;
+        }
+    }
+}
+
+.card {
+    border: none;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s, box-shadow 0.3s;
+
+    &:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+    }
+
+    .card-img-top {
+        border-top-left-radius: 10px;
+        border-top-right-radius: 10px;
+        height: 200px;
+        object-fit: cover;
+    }
+
+    .card-body {
+        padding: 15px;
+    }
+}
+
+.btn-primary {
+    background-color: $secondary;
+    border-color: $secondary;
+    &:hover {
+        background-color: darken($secondary, 10%);
+        border-color: darken($secondary, 10%);
+    }
+}
+
+.btn-success {
+    background-color: #27AE60;
+    border-color: #27AE60;
+    &:hover {
+        background-color: darken(#27AE60, 10%);
+        border-color: darken(#27AE60, 10%);
+    }
+}
+
+.btn-danger {
+    background-color: #E74C3C;
+    border-color: #E74C3C;
+    &:hover {
+        background-color: darken(#E74C3C, 10%);
+        border-color: darken(#E74C3C, 10%);
+    }
+}
+
+.btn-warning {
+    background-color: #F1C40F;
+    border-color: #F1C40F;
+    &:hover {
+        background-color: darken(#F1C40F, 10%);
+        border-color: darken(#F1C40F, 10%);
+    }
+}
+
+.table {
+    background-color: $white;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.alert {
+    border-radius: 5px;
+}
+
+footer {
+    background-color: $primary;
+    color: $light;
+
+    a {
+        color: $light;
+        text-decoration: none;
+        transition: color 0.3s;
+
+        &:hover {
+            color: $secondary;
+        }
+
+        i {
+            margin-right: 10px; // Увеличенный отступ между иконкой и текстом
+        }
+    }
+
+    h5 {
+        color: $white;
+    }
+}
