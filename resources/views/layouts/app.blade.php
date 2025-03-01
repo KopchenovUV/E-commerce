@@ -36,10 +36,10 @@
                             </li>
                         @endauth
                     </ul>
-                    <ul class="navbar-nav ms-auto"> <!-- Переносим вправо -->
+                    <ul class="navbar-nav ms-auto">
                         @auth
-                            <li class="nav-item">
-                                <a class="nav-link" href="#"><i class="fas fa-user me-1"></i>{{ auth()->user()->name }}</a>
+                            <li class="nav-item {{ Route::is('profile.show') ? 'active' : '' }}">
+                                <a class="nav-link" href="{{ route('profile.show') }}"><i class="fas fa-user me-1"></i>{{ auth()->user()->name }}</a>
                             </li>
                             <li class="nav-item">
                                 <form method="POST" action="{{ route('logout') }}">

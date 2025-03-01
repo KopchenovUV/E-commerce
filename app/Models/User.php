@@ -13,6 +13,10 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'full_name',
+        'birth_date',
+        'gender',
+        'phone',
     ];
 
     protected $hidden = [
@@ -22,9 +26,11 @@ class User extends Authenticatable
 
     protected $casts = [
         'email_verified_at' => 'datetime',
+        'birth_date' => 'date',
     ];
 
-    public function cart(){
+    public function cart()
+    {
         return $this->hasMany(Cart::class);
     }
 
