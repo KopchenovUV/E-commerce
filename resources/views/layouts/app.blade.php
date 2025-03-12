@@ -13,53 +13,56 @@
 <body>
     <div id="app">
         <!-- Навигация -->
-        <nav class="navbar navbar-expand-lg">
-            <div class="container">
-                <a class="navbar-brand" href="{{ route('home') }}"><i class="fas fa-store me-2"></i>TechShop</a>
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="collapse navbar-collapse" id="navbarNav">
-                    <ul class="navbar-nav me-auto">
-                        <li class="nav-item {{ Route::is('home') ? 'active' : '' }}">
-                            <a class="nav-link" href="{{ route('home') }}"><i class="fas fa-home me-1"></i>Главная</a>
-                        </li>
-                        <li class="nav-item {{ Route::is('categories.index') ? 'active' : '' }}">
-                            <a class="nav-link" href="{{ route('categories.index') }}"><i class="fas fa-list me-1"></i>Категории</a>
-                        </li>
-                        <li class="nav-item {{ Route::is('cart.index') ? 'active' : '' }}">
-                            <a class="nav-link" href="{{ route('cart.index') }}"><i class="fas fa-shopping-cart me-1"></i>Корзина</a>
-                        </li>
-                        @auth
-                            <li class="nav-item {{ Route::is('favorites.index') ? 'active' : '' }}">
-                                <a class="nav-link" href="{{ route('favorites.index') }}"><i class="fas fa-heart me-1"></i>Избранное</a>
+            <nav class="navbar navbar-expand-lg">
+                <div class="container">
+                    <a class="navbar-brand" href="{{ route('home') }}"><i class="fas fa-store me-2"></i>TechShop</a>
+                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="collapse navbar-collapse" id="navbarNav">
+                        <ul class="navbar-nav me-auto">
+                            <li class="nav-item {{ Route::is('home') ? 'active' : '' }}">
+                                <a class="nav-link" href="{{ route('home') }}"><i class="fas fa-home me-1"></i>Главная</a>
                             </li>
-                        @endauth
-                    </ul>
-                    <ul class="navbar-nav ms-auto">
-                        @auth
-                            <li class="nav-item {{ Route::is('profile.show') ? 'active' : '' }}">
-                                <a class="nav-link" href="{{ route('profile.show') }}"><i class="fas fa-user me-1"></i>{{ auth()->user()->name }}</a>
+                            <li class="nav-item {{ Route::is('categories.index') ? 'active' : '' }}">
+                                <a class="nav-link" href="{{ route('categories.index') }}"><i class="fas fa-list me-1"></i>Категории</a>
                             </li>
-                            <li class="nav-item">
-                                <form method="POST" action="{{ route('logout') }}">
-                                    @csrf
-                                    <button type="submit" class="nav-link btn btn-link"><i class="fas fa-sign-out-alt me-1"></i>Выйти</button>
-                                </form>
+                            <li class="nav-item {{ Route::is('cart.index') ? 'active' : '' }}">
+                                <a class="nav-link" href="{{ route('cart.index') }}"><i class="fas fa-shopping-cart me-1"></i>Корзина</a>
                             </li>
-                        @else
-                            <li class="nav-item {{ Route::is('login') ? 'active' : '' }}">
-                                <a class="nav-link" href="{{ route('login') }}"><i class="fas fa-sign-in-alt me-1"></i>Войти</a>
-                            </li>
-                            <li class="nav-item {{ Route::is('register') ? 'active' : '' }}">
-                                <a class="nav-link" href="{{ route('register') }}"><i class="fas fa-user-plus me-1"></i>Регистрация</a>
-                            </li>
-                        @endauth
-                    </ul>
+                            @auth
+                                <li class="nav-item {{ Route::is('favorites.index') ? 'active' : '' }}">
+                                    <a class="nav-link" href="{{ route('favorites.index') }}"><i class="fas fa-heart me-1"></i>Избранное</a>
+                                </li>
+                                <li class="nav-item {{ Route::is('support') ? 'active' : '' }}">
+                                    <a class="nav-link" href="{{ route('support') }}"><i class="fas fa-headset me-1"></i>Поддержка</a>
+                                </li>
+                            @endauth
+                        </ul>
+                        <ul class="navbar-nav ms-auto">
+                            @auth
+                                <li class="nav-item {{ Route::is('profile.show') ? 'active' : '' }}">
+                                    <a class="nav-link" href="{{ route('profile.show') }}"><i class="fas fa-user me-1"></i>{{ auth()->user()->name }}</a>
+                                </li>
+                                <li class="nav-item">
+                                    <form method="POST" action="{{ route('logout') }}">
+                                        @csrf
+                                        <button type="submit" class="nav-link btn btn-link"><i class="fas fa-sign-out-alt me-1"></i>Выйти</button>
+                                    </form>
+                                </li>
+                            @else
+                                <li class="nav-item {{ Route::is('login') ? 'active' : '' }}">
+                                    <a class="nav-link" href="{{ route('login') }}"><i class="fas fa-sign-in-alt me-1"></i>Войти</a>
+                                </li>
+                                <li class="nav-item {{ Route::is('register') ? 'active' : '' }}">
+                                    <a class="nav-link" href="{{ route('register') }}"><i class="fas fa-user-plus me-1"></i>Регистрация</a>
+                                </li>
+                            @endauth
+                        </ul>
+                    </div>
                 </div>
-            </div>
-        </nav>
-
+            </nav>
+            
         <!-- Сообщения -->
         @if (session('success'))
             <div class="alert alert-success container animateanimated animatefadeIn">

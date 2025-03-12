@@ -32,11 +32,20 @@ Route::prefix('admin')->group(function () {
     Route::get('/edit/{id}', [AdminController::class, 'edit'])->name('admin.edit');
     Route::put('/update/{id}', [AdminController::class, 'update'])->name('admin.update');
     Route::delete('/destroy/{id}', [AdminController::class, 'destroy'])->name('admin.destroy');
+    Route::put('/ticket/{id}', [AdminController::class, 'updateTicket'])->name('admin.ticket.update');
 });
 
 // Профиль пользователя
 Route::get('/profile', [ProfileController::class, 'show'])->name('profile.show');
 Route::get('/profile/edit', [ProfileController::class, 'edit'])->name('profile.edit');
 Route::put('/profile/update', [ProfileController::class, 'update'])->name('profile.update');
+
+//Поддержка 
+Route::get('/support', [App\Http\Controllers\SupportController::class, 'index'])->name('support')->middleware('auth');
+Route::post('/support/send', [App\Http\Controllers\SupportController::class, 'sendMessage'])->name('support.send')->middleware('auth');
+Route::post('/support/complaint', [App\Http\Controllers\SupportController::class, 'submitComplaint'])->name('support.complaint')->middleware('auth');
+
+Route::get('/support/categories/{category}', [App\Http\Controllers\SupportController::class, 'getProductsByCategory'])->name('support.categories');
+Route::get('/support/product/{name}', [App\Http\Controllers\SupportController::class, 'getProductDetails'])->name('support.product');
 
 Auth::routes();
