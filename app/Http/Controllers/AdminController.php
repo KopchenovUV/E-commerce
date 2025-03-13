@@ -7,7 +7,9 @@ use App\Models\Category;
 use App\Models\SupportTicket;
 use App\Models\SupportChat;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Storage;
+
 
 class AdminController extends Controller
 {
@@ -38,6 +40,7 @@ class AdminController extends Controller
     /**
      * Сохранение нового товара
      */
+
     public function store(Request $request)
     {
         $data = $request->validate([

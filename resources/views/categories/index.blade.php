@@ -57,5 +57,78 @@
                 <p class="animateanimated animatefadeIn">Товаров не найдено.</p>
             @endforelse
         </div>
+
+        <!-- Пагинация -->
+        @if ($products->lastPage() > 1)
+            <div class="swiper category-pagination mt-4">
+                <div class="swiper-wrapper">
+                    @for ($i = 1; $i <= $products->lastPage(); $i++)
+                        <div class="swiper-slide">
+                            <a href="{{ $products->appends(request()->query())->url($i) }}" class="page-link {{ $products->currentPage() == $i ? 'active' : '' }}">{{ $i }}</a>
+                        </div>
+                    @endfor
+                </div>
+                <div class="swiper-button-prev"></div>
+                <div class="swiper-button-next"></div>
+                <div class="swiper-pagination category-bullets"></div>
+            </div>
+        @endif
     </div>
+<!-- Подключение Swiper.js -->
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+
+    <script>
+        const categorySwiper = new Swiper('.category-pagination', {
+            slidesPerView: 'auto',
+            spaceBetween: 10,
+            navigation: {
+                nextEl: '.swiper-button-next',
+                prevEl: '.swiper-button-prev',
+            },
+            pagination: {
+                el: '.category-bullets',
+                type: 'bullets',
+                clickable: true,
+            },
+        });
+    </script>
+
+<style>
+    /* Стилизация под цвета проекта (#2C3E50) */
+    .category-bullets .swiper-pagination-bullet {
+        background: #2C3E50 !important;
+        opacity: 0.5;
+    }
+    .category-bullets .swiper-pagination-bullet-active {
+        opacity: 1;
+        background: #2C3E50 !important;
+    }
+    .swiper-button-next, .swiper-button-prev {
+        color: #2C3E50 !important;
+    }
+    .category-pagination {
+        display: flex;
+        justify-content: center; /* Центрирование всего блока пагинации */
+        align-items: center;
+    }
+    .category-pagination .swiper-wrapper {
+        display: flex;
+        justify-content: center; /* Центрирование номеров страниц внутри слайдера */
+    }
+    .category-pagination .swiper-slide {
+        width: auto;
+    }
+    .page-link {
+        display: block;
+        padding: 5px 10px;
+        text-decoration: none;
+        color: #2C3E50;
+    }
+    .page-link.active {
+        background: #2C3E50;
+        color: white;
+        border-radius: 5px;
+    }
+</style>
 @endsection

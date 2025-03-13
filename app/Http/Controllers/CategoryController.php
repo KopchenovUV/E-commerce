@@ -30,7 +30,14 @@ class CategoryController extends Controller
             $products->where('name', 'like', '%' . $request->search . '%');
         }
 
-        $products = $products->get();
+        $products = $products->paginate(9); // 9 товаров на страницу
         return view('categories.index', compact('categories', 'products'));
+    }
+
+    public function show($id)
+    {
+        $category = Category::findOrFail($id);
+        $products = $category->products()->paginate(9); // 9 товаров на страницу
+        return view('categories.show', compact('category', 'products'));
     }
 }
